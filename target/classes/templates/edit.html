@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>Simple example - Editor.md examples</title>
+    <link rel="stylesheet" href="lib/editormd/css/editormd.css" />
+</head>
+<body>
+<div id="layout">
+    <div id="context-editormd">
+        <textarea style="display:none;" placeholder="博客内容"></textarea>
+    </div>
+
+</div>
+<script src="js/jquery.js"></script>
+<script src="lib/editormd/editormd.js"></script>
+<script type="text/javascript">
+    var testEditor;
+
+    $(function() {
+        testEditor = editormd({
+            id      : "context-editormd",
+            width   : "100%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "lib/editormd/lib/"
+        });
+
+        /*
+        // or
+        testEditor = editormd({
+            id      : "context-editormd",
+            width   : "90%",
+            height  : 640,
+            path    : "../lib/"
+        });
+        */
+    });
+</script>
+</body>
+</html>
