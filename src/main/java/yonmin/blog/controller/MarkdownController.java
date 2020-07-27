@@ -12,9 +12,21 @@ public class MarkdownController {
         return "edit";
     }
 
-    @RequestMapping("/detail")
+    @RequestMapping("/blog")
     public String detailPage(){
         System.out.println("打开博客详情页");
         return "blog";
+    }
+
+    @RequestMapping("/types")
+    public String typesPage(){
+        System.out.println("打开分类页");
+        return "types";
+    }
+
+    @RequestMapping("/tags")
+    public String tagsPage(){
+        System.out.println("打开标签页");
+        return "tags";
     }
 }

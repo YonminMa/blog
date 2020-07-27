@@ -1,6 +1,14 @@
 body{
+    word-wrap:break-word !important;
     background: url("/images/dot.png") !important;
 }
+
+/*------ shadow ------*/
+.m-shadow-small{
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
 /*------ fontsize ------*/
 .m-fontsize-medium{
     font-size: medium !important;
@@ -69,6 +77,9 @@ body{
 .m-padding-tb-massive{
     padding-top: 3em !important;
     padding-bottom: 3em !important;
+}
+.m-padding-buttom-zero{
+    padding-bottom: 0 !important;
 }
 .m-padding-lr{
     padding-left: 1em !important;
@@ -143,10 +154,7 @@ body{
         display: block !important;
     }
     .m-padding-responsive{
-        padding-top: 1em !important;
-        padding-bottom: 1em !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        padding: 1em 0 !important;
     }
     .m-mobile-wide{
         width: 100% !important;
