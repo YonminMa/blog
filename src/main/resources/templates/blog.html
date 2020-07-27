@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客详情</title>
+    <!--    <link href="css/bootstrap.css" rel="stylesheet">-->
+    <!--    <link rel="stylesheet" href="css/semantic.css">-->
+    <link rel="stylesheet" href="css/me.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css">
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="ui inverted attached segment m-padding-tb-mini" id="header">
+    <div class="ui container m-container-large">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">Yonmin</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+            <div class="right item m-item m-mobile-hide m-margin-tb-small">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui button black icon m-top-right m-mobile-show show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+<!-- 中间内容 -->
+<div class="m-padding-tb-massive">
+    <div class="ui container m-container">
+        <!-- 头部 -->
+        <div class="ui attached segment padded">
+            <div class="m-padding-lr">
+                <h1 class="ui aligned center m-margin-tb-small m-fontsize-large-em">缓存雪崩、缓存击穿、缓存穿透概念及其解决方案</h1>
+                <div class="ui big horizontal item link list m-margin-tb-mini"> <!-- horizontal代表横着放置 -->
+                    <div class="item">
+                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7"
+                             alt="Yonmin" class="ui avatar image">
+                        <div class="content"><a href="#">YonminMa</a></div>
+                    </div>
+                    <div class="item">
+                        <i class="calendar icon"></i> 2020-7-28
+                    </div>
+                    <div class="item">
+                        <i class="eye icon"></i> 218
+                    </div>
+                    <div class="item right basic">
+                        <div class="ui orange basic label">原创</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 图片区域 -->
+        <!-- <div class="ui attached segment">
+            <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui fluid rounded image">
+        </div> -->
+        <!-- 内容 -->
+        <div class="ui attached segment padded">
+            <div id="content" class="m-fontsize-larger m-padding-responsive m-black" style="line-height: 28px;">
+                <h1><a name="t0"></a><a name="t0"></a><a id="_0"></a>缓存雪崩</h1>
+                <h2><a name="t1"></a><a name="t1"></a><a id="_1"></a>概念</h2>
+                <p>在一个<strong>较短</strong>的时间内，缓存中<strong>较多</strong>的key<strong>集中过期</strong>。此周期内访问请求过期的数据，Redis未命中，便将请求发送给数据库。数据库一时间无法处理如此多的请求，导致Redis中大量请求被积压，且出现超时现象。</p>
+                <h2><a name="t2"></a><a name="t2"></a><a id="_4"></a>解决方案</h2>
+                <ol>
+                    <li>更多的页面静态化处理</li>
+                    <li>构建多级缓存架构<br>
+                        Nginx缓存+ redis缓存+ ehcache缓存<br>
+                        即使Redis未命中，ehcache能命中便可以减轻压力</li>
+                    <li>检测Mysq严重耗时业务进行优化<br>
+                        对数据库的瓶颈排查：例如超时查询、耗时较高事务等</li>
+                    <li>灾难预警机制<br>
+                        监控 redis服务器性能指标
+                        <ul>
+                            <li>CPU占用、CPU使用率</li>
+                            <li>内存容量</li>
+                            <li>查询平均响应时间线程数</li>
+                        </ul>
+                    </li>
+                    <li>限流、降级<br>
+                        短时间范围内牺牲一些客户体验，限制部分请求访问，降低应用服务器压力，待业务低速运转后再逐步开放访问</li>
+                </ol>
+                <p><strong>解决短时间内大量key过期的问题</strong></p>
+                <ol>
+                    <li>LRU与LFU切换</li>
+                    <li>数据有效期策略调整
+                        <ul>
+                            <li>根据业务数据有效期进行分类错峰，A类90分钟，B类80分钟，C类70分钟</li>
+                            <li>过期时间使用固定时间+随机值的形式，稀释集中到期的key的数量</li>
+                        </ul>
+                    </li>
+                    <li>超热数据使用永久key</li>
+                    <li>定期维护（自动+人工）<br>
+                        对即将过期数据做访问量分析，确认是否延时，结合访问量统计，给热点数据做延时</li>
+                    <li>加锁</li>
+                </ol>
+                <h2><a name="t3"></a><a name="t3"></a><a id="_28"></a>总结</h2>
+                <p>缓存雪崩就是瞬间过期数据量太大，导致对数据库服务器造成压力。如能够有效避免过期时间集中，可以有效解决雪崩现象的出现<br>
+                    （约40%），配合其他策略起使用，并监控服务器的运行数据，根据运行记录做快速调整。</p>
+                <h1><a name="t4"></a><a name="t4"></a><a id="_32"></a>缓存击穿</h1>
+                <h2><a name="t5"></a><a name="t5"></a><a id="_33"></a>概念</h2>
+                <p>Redis中某个过期的key被大量访问，请求未被命中后Redis在短时间内对数据库发起了大量的查询操作。</p>
+                <h2><a name="t6"></a><a name="t6"></a><a id="_35"></a>解决方案</h2>
+                <ol>
+                    <li>预先设定<br>
+                        以电商为例，每个商家根据店铺等级，指定若干款主打商品，在购物节期间，加大此类信息key的过期时长</li>
+                    <li>现场调整<br>
+                        监控访问量，对自然流量激増的数据延长过期时间，或设置为永久性key</li>
+                    <li>后台刷新数据<br>
+                        启动定时任务，高峰期来临之前，刷新数据有效期，确保不丟失</li>
+                    <li>二级缓存<br>
+                        设置不同的失效时间，保障缓存中的某个key不会被同时淘汰</li>
+                    <li>加锁<br>
+                        分布式锁，防止被击穿，但是会造成性能瓶颈，慎用</li>
+                </ol>
+                <h2><a name="t7"></a><a name="t7"></a><a id="_47"></a>总结</h2>
+                <p>缓存击穿就是单个高热数据过期的瞬间，数据访问量较大，未命中Redis后，发起了大量对同一数据的数据库访问，导致对数据库服务器造成压力。应对策略应该在业务数据分析与预防方面进行，配合运行监控测试与即时调整策略，毕竟单个key的过期监控难度较高，配合雪崩处理策略即可。</p>
+                <h1><a name="t8"></a><a name="t8"></a><a id="_51"></a>缓存穿透</h1>
+                <h2><a name="t9"></a><a name="t9"></a><a id="_52"></a>概念</h2>
+                <p>访问一个不存在的key，直接对数据库造成冲击，Redis无法命中，对服务器发起请求。服务器也查询不到数据，返回null。Redis获取到null数据未进行持久化，直接返回。然后重复上述流程。此现象常见于黑客攻击</p>
+                <h2><a name="t10"></a><a name="t10"></a><a id="_54"></a>解决方案</h2>
+                <ol>
+                    <li>缓存null<br>
+                        对查询结果为nu的数据进行缓存（长期使用，定期清理），设定短时限，例如30-60秒，最高5分钟</li>
+                    <li>白名单策略<br>
+                        提前预热各种分类数据d对应的 bitmaps,id作为 bitmaps的 offset，相当于设置了数据白名单。当加载正常数据时，放行，加载异常数据时直接拦截（效率偏低）<br>
+                        使用布隆过滤器（但是布隆过滤器有命中问题）</li>
+                    <li>实时监控<br>
+                        实时监控 redis命中率（业务正常范围时，通常会有一个波动值）与null数据的占比<br>
+                        非活动时段波动：通常检测3-5倍，超过5倍纳入重点排查对象<br>
+                        活动时段波动：通常检测10-50倍，超过50倍纳入重点排查对象根据倍数不同，启动不同的排查流程。然后使用黑名单进行防控</li>
+                    <li>key加密<br>
+                        问题出现后，临时启动防灾业务key，对key进行业务层传输加密服务，设定校验程序，过来的key校验<br>
+                        例如每天随机分配60个加密串，挑选到3个，混淆到面数据ω中，发现访问key不满足规则，驳回数据访冋</li>
+                </ol>
+                <h2><a name="t11"></a><a name="t11"></a><a id="_69"></a>总结</h2>
+                <p>缓存击穿就是访问了不存在的数据，跳过了合法数据的 Redis数据缓存阶段，每次访问数据库，直接对数据库服务器造成压力。</p>
+            </div>
+            <!-- 标签 -->
+            <div class="m-padding-lr">
+                <div class="ui teal basic label">方法论</div>
+            </div>
+            <!-- 赞赏 -->
+            <div class="ui center aligned basic segment">
+                <button id="payButton" class="ui orange basic circular button">赞赏</button>
+                <div class="ui payQR flowing popup center transition hidden">
+                    <div class="ui orange basic label">
+                        <div class="ui images" style="font-size: inherit !important;">
+                            <div class="image">
+                                <img src="images/wechat.jpg" alt="" style="width: 120px;" class="ui rounded bordered image">
+                                <div>支付宝</div>
+                            </div>
+                            <div class="image">
+                                <img src="images/wechat.jpg" alt="" style="width: 120px;" class="ui rounded bordered image">
+                                <div>微信</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 博客信息 -->
+        <div class="ui attached positive message">
+            <div class="ui middle aligned stackable grid m-margin-lr">
+                <div class="ten wide column m-fontsize-medium">
+                    <p>版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。</p>
+                    <p>本文链接：<a href="https://blog.csdn.net/weixin_44547562/article/details/107221398" style="display: block">https://blog.csdn.net/weixin_44547562/article/details/107221398</a></p>
+                </div>
+                <div class="six wide column m-padding-lr-large">
+                    <div class="ui center aligned">
+                        <img src="images/wechat.jpg" style="width: 120px;" alt="" class="ui centered rounded bordered image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 评论区 -->
+        <div class="ui bottom attached segment">
+            <!-- 留言区 -->
+            <div class="ui segment teal m-margin-lr">
+                <div class="ui comments">
+                    <h3 class="ui dividing header">Comments</h3>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://profile.csdnimg.cn/F/4/1/2_weixin_44547562">
+                        </a>
+                        <div class="content">
+                            <a class="author">Matt</a>
+                            <div class="metadata">
+                                <span class="date">今天下午 5:42</span>
+                            </div>
+                            <div class="text">太赞了！ </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://profile.csdnimg.cn/F/4/1/2_weixin_44547562">
+                        </a>
+                        <div class="content">
+                            <a class="author">Elliot Fu</a>
+                            <div class="metadata">
+                                <span class="date">昨天上午12:30</span>
+                            </div>
+                            <div class="text">
+                                <p>這對我的研究是非常有用.謝謝!</p>
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                        <div class="comments">
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="https://profile.csdnimg.cn/F/4/1/2_weixin_44547562">
+                                </a>
+                                <div class="content">
+                                    <a class="author">Jenny Hess</a>
+                                    <div class="metadata">
+                                        <span class="date">刚刚</span>
+                                    </div>
+                                    <div class="text">艾略特你永远是多么正确 :) </div>
+                                    <div class="actions">
+                                        <a class="reply">Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://profile.csdnimg.cn/F/4/1/2_weixin_44547562">
+                        </a>
+                        <div class="content">
+                            <a class="author">Joe Henderson</a>
+                            <div class="metadata">
+                                <span class="date">5 天以前</span>
+                            </div>
+                            <div class="text">老兄，这太棒了。非常感谢。 </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui form m-margin-lr">
+                <div class="field">
+                    <textarea name="content" placeholder="请输入评论信息..."></textarea>
+                </div>
+                <div class="fields">
+                    <div class="field m-mobile-wide">
+                        <button class="ui teal button m-mobile-wide">
+                            <i class="edit icon"></i>发布
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部footer -->
+<footer class="ui inverted vertical segment m-padding-tb-massive">
+    <div class="ui center aligned container m-container-large">
+        <div class="ui grid stackable inverted divided">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img src="images/wechat.jpg" class="ui rounded image" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="three wide column">
+                <h4 class="ui inverted header m-opacity-mini">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事</a>
+                    <a href="#" class="item">用户故事</a>
+                    <a href="#" class="item">用户故事</a>
+                </div>
+            </div>
+
+            <div class="three wide column">
+                <h4 class="ui inverted header m-opacity-mini">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email：2083198401@qq.com</a>
+                    <a href="#" class="item">WeChat：YonminMa</a>
+                    <a href="#" class="item">QQ：2083198401</a>
+                </div>
+            </div>
+
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-opacity-mini">Blog</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客、分享关于编程、写作、思考相关的任何内容，希望可以给来这儿的人一点帮助。。。</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2012-2020 Yonmin. All Rights Reserved.</p>
+    </div>
+
+</footer>
+
+<script src="js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
+<script>
+    $('.show').click(function(){
+        $('.m-item').toggleClass('m-mobile-hide')
+    });
+
+    $('#payButton').popup({
+        popup : $('.payQR.popup'),
+        on : 'click',
+        position : 'bottom center'
+    });
+</script>
+<!--<script src="js/semantic.js"></script>-->
+<!--<script src="js/bootstrap.js"></script>-->
+</body>
+</html>
