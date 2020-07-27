@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博客详情</title>
-    <!--    <link href="css/bootstrap.css" rel="stylesheet">-->
-    <!--    <link rel="stylesheet" href="css/semantic.css">-->
     <link rel="stylesheet" href="css/me.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css">
 </head>
 <body>
 
 <!-- 导航 -->
-<nav class="ui inverted attached segment m-padding-tb-mini" id="header">
+<nav class="ui inverted attached segment m-padding-tb-mini m-shadow-small" id="header">
     <div class="ui container m-container-large">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">Yonmin</h2>
@@ -60,10 +58,6 @@
                 </div>
             </div>
         </div>
-        <!-- 图片区域 -->
-        <!-- <div class="ui attached segment">
-            <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui fluid rounded image">
-        </div> -->
         <!-- 内容 -->
         <div class="ui attached segment padded">
             <div id="content" class="m-fontsize-larger m-padding-responsive m-black" style="line-height: 28px;">
@@ -147,20 +141,20 @@
             </div>
             <!-- 标签 -->
             <div class="m-padding-lr">
-                <div class="ui teal basic label">方法论</div>
+                <div class="ui teal basic label m-fontsize-medium">方法论</div>
             </div>
             <!-- 赞赏 -->
             <div class="ui center aligned basic segment">
-                <button id="payButton" class="ui orange basic circular button">赞赏</button>
+                <button id="payButton" class="ui orange basic circular button m-fontsize-medium">赞赏</button>
                 <div class="ui payQR flowing popup center transition hidden">
                     <div class="ui orange basic label">
                         <div class="ui images" style="font-size: inherit !important;">
                             <div class="image">
-                                <img src="images/wechat.jpg" alt="" style="width: 120px;" class="ui rounded bordered image">
+                                <img src="images/ZFBM.jpg" alt="" style="width: 130px;" class="ui rounded bordered image">
                                 <div>支付宝</div>
                             </div>
                             <div class="image">
-                                <img src="images/wechat.jpg" alt="" style="width: 120px;" class="ui rounded bordered image">
+                                <img src="images/wechatM.png" alt="" style="width: 130px;" class="ui rounded bordered image">
                                 <div>微信</div>
                             </div>
                         </div>
@@ -173,14 +167,12 @@
         <!-- 博客信息 -->
         <div class="ui attached positive message">
             <div class="ui middle aligned stackable grid m-margin-lr">
-                <div class="ten wide column m-fontsize-medium">
+                <div class="twelve wide column m-fontsize-medium">
                     <p>版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。</p>
-                    <p>本文链接：<a href="https://blog.csdn.net/weixin_44547562/article/details/107221398" style="display: block">https://blog.csdn.net/weixin_44547562/article/details/107221398</a></p>
+                    <p>本文链接：<a href="https://blog.csdn.net/weixin_44547562/article/details/107221398">https://blog.csdn.net/weixin_44547562/article/details/107221398</a></p>
                 </div>
-                <div class="six wide column m-padding-lr-large">
-                    <div class="ui center aligned">
-                        <img src="images/wechat.jpg" style="width: 120px;" alt="" class="ui centered rounded bordered image">
-                    </div>
+                <div class="four wide column m-padding-lr-large">
+                    <img src="images/wechat.jpg" style="width: 120px;" alt="" class="ui centered rounded bordered image">
                 </div>
             </div>
         </div>
@@ -188,7 +180,7 @@
         <div class="ui bottom attached segment">
             <!-- 留言区 -->
             <div class="ui segment teal m-margin-lr">
-                <div class="ui comments">
+                <div class="ui  m-fontsize-medium comments">
                     <h3 class="ui dividing header">Comments</h3>
                     <div class="comment">
                         <a class="avatar">
@@ -256,7 +248,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui form m-margin-lr">
+            <div class="ui form m-margin-lr m-fontsize-medium">
                 <div class="field">
                     <textarea name="content" placeholder="请输入评论信息..."></textarea>
                 </div>
@@ -326,7 +318,5 @@
         position : 'bottom center'
     });
 </script>
-<!--<script src="js/semantic.js"></script>-->
-<!--<script src="js/bootstrap.js"></script>-->
 </body>
 </html>
