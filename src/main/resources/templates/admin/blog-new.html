@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>写博客</title>
     <link rel="stylesheet" href="css/me.css">
+    <link rel="stylesheet" href="lib/editormd/css/editormd.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css">
 </head>
 <body>
@@ -44,8 +45,8 @@
 </div>
 
 <!-- 中间内容 -->
-<div class="m-padding-tb-large m-container">
-    <div class="ui container">
+<div class="m-padding-tb-large" style="zoom: 0.8 !important;">
+    <div class="ui container m-container">
         <form action="#" method="post" class="ui form">
             <div class="required field">
                 <div class="ui left labeled input">
@@ -64,7 +65,9 @@
             </div>
 
             <div class="field">
-                <textarea name="content" id="" placeholder="博客内容"></textarea>
+                <div id="context-editormd">
+                    <textarea style="display:none;" placeholder="博客内容"></textarea>
+                </div>
             </div>
 
             <div class="two fields">
@@ -100,7 +103,7 @@
 
             <div class="field">
                 <div class="ui left labeled input">
-                    <label for="" class="ui basic label">首图</label>
+                    <label class="ui basic label">首图</label>
                     <input type="text" name="indexPicture" placeholder="图片地址">
                 </div>
             </div>
@@ -185,6 +188,7 @@
 </footer>
 
 <script src="../js/jquery.js"></script>
+<script src="lib/editormd/editormd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
 <script>
     $('.show').click(function(){
@@ -201,7 +205,22 @@
                 }]
             }
         }
-    })
+    });
+    let testEditor;
+    $(function() {
+        testEditor = editormd({
+            id      : "context-editormd",
+            width   : "100%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "lib/editormd/lib/",
+            toolbarIcons : function() {
+                // Or return editormd.toolbarModes[name]; // full, simple, mini
+                // Using "||" set icons align right.
+                return ["undo", "redo", "|", "bold", "hr", "|", "watch", "fullscreen", "preview", "testIcon"]
+            }
+        });
+    });
 </script>
 </body>
 </html>

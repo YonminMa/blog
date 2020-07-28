@@ -156,7 +156,7 @@ body{
     display: none !important;
 }
 .m-header{
-    padding-left: 0% !important;
+    padding-left: 0 !important;
 }
 
 /*------- icon --------*/
@@ -176,10 +176,7 @@ body{
         display: block !important;
     }
     .m-padding-responsive{
-        padding-top: 1em !important;
-        padding-bottom: 1em !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        padding: 1em 0 !important;
     }
     .m-mobile-wide{
         width: 100% !important;
