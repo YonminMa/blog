@@ -41,4 +41,16 @@ public class MarkdownController {
         return "about";
     }
 
+    @RequestMapping("/admin")
+    public String adminPage(){
+        System.out.println("打开后台管理页");
+        return "admin/blog-control";
+    }
+
+    @RequestMapping("/new")
+    public String newPage(){
+        System.out.println("打开博客编辑页");
+        return "admin/blog-new";
+    }
+
 }
