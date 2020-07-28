@@ -29,4 +29,16 @@ public class MarkdownController {
         System.out.println("打开标签页");
         return "tags";
     }
+    @RequestMapping("/archives")
+    public String archivesPage(){
+        System.out.println("打开归档页");
+        return "archives";
+    }
+
+    @RequestMapping("/about")
+    public String aboutPage(){
+        System.out.println("打开关于我页");
+        return "about";
+    }
+
 }
