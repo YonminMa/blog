@@ -6,8 +6,8 @@
     <title>博客详情</title>
     <link rel="stylesheet" href="css/me.css">
     <link rel="stylesheet" href="css/typo.css">
+    <link rel="stylesheet" href="lib/tocbot/tocbot.css">
     <link rel="stylesheet" href="lib/prism/prism.css">
-    <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css">
 </head>
 <body>
@@ -37,7 +37,7 @@
 
 
 <!-- 中间内容 -->
-<div class="m-padding-tb-massive animate__fadeIn">
+<div class="m-padding-tb-massive">
     <div class="ui container m-container">
         <!-- 头部 -->
         <div class="ui attached segment padded">
@@ -61,7 +61,7 @@
         </div>
         <!-- 内容 -->
         <div class="ui attached segment padded">
-            <div id="content" class="typo typo-selection m-padding-responsive m-black">
+            <div id="content" class="js-toc-content typo typo-selection m-padding-responsive m-black">
                 <h1>中文网页重设与排版：<i class="serif">Typo.css</i></h1><br/>
 
                 <h2 id="tagline" class="serif">一致化浏览器排版效果，构建最适合中文阅读的网页排版</h2>
@@ -482,7 +482,7 @@ h5,h6{font-size:1em;}
             </div>
         </div>
         <!-- 评论区 -->
-        <div class="ui bottom attached segment">
+        <div id="comment-container" class="ui bottom attached segment">
             <!-- 留言区 -->
             <div class="ui segment teal m-margin-lr">
                 <div class="ui  m-fontsize-medium comments">
@@ -569,6 +569,18 @@ h5,h6{font-size:1em;}
     </div>
 </div>
 
+<div class="m-padding m-fixed m-right-bottom">
+    <div class="ui vertical icon buttons">
+        <button type="button" class="ui teal toc button">目录</button>
+        <a href="#comment-container" type="button" class="ui teal button">评论</a>
+        <a href="#" class="ui icon button"><i class="chevron up icon"></i></a>
+    </div>
+</div>
+
+<div class="ui toc-container flowing popup center transition hidden">
+    <div class="js-toc"></div>
+</div>
+
 <!-- 底部footer -->
 <footer class="ui inverted vertical segment m-padding-tb-massive">
     <div class="ui center aligned container m-container-large">
@@ -612,6 +624,7 @@ h5,h6{font-size:1em;}
 
 <script src="js/jquery.js"></script>
 <script src="lib/prism/prism.js"></script>
+<script src="lib/tocbot/tocbot.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
 <script>
     $('.show').click(function(){
@@ -623,6 +636,23 @@ h5,h6{font-size:1em;}
         on : 'click',
         position : 'bottom center'
     });
+    $('.toc.button').popup({
+        popup : $('.toc-container.popup'),
+        on : 'click',
+        position : 'left center'
+    });
+
+    tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+
 </script>
 </body>
 </html>

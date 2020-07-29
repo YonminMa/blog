@@ -147,6 +147,14 @@ body{
     top: 0.8em;
     right: 0;
 }
+.m-fixed{
+    position: fixed !important;
+    z-index: 1 !important;
+}
+.m-right-bottom{
+    right: 0 !important;
+    bottom: 50% !important;
+}
 
 /*------- display --------*/
 .m-display{
