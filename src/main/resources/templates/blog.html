@@ -37,7 +37,7 @@
 
 
 <!-- 中间内容 -->
-<div class="m-padding-tb-massive">
+<div id="waypoint" class="m-padding-tb-massive">
     <div class="ui container m-container">
         <!-- 头部 -->
         <div class="ui attached segment padded">
@@ -569,11 +569,11 @@ h5,h6{font-size:1em;}
     </div>
 </div>
 
-<div class="m-padding m-fixed m-right-bottom">
+<div id="toolbar" class="m-padding m-fixed m-right-bottom" style="display: none">
     <div class="ui vertical icon buttons">
         <button type="button" class="ui teal toc button">目录</button>
         <a href="#comment-container" type="button" class="ui teal button">评论</a>
-        <a href="#" class="ui icon button"><i class="chevron up icon"></i></a>
+        <div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i></div>
     </div>
 </div>
 
@@ -625,6 +625,8 @@ h5,h6{font-size:1em;}
 <script src="js/jquery.js"></script>
 <script src="lib/prism/prism.js"></script>
 <script src="lib/tocbot/tocbot.js"></script>
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="lib/waypoints/jquery.waypoints.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
 <script>
     $('.show').click(function(){
@@ -652,6 +654,22 @@ h5,h6{font-size:1em;}
         // For headings inside relative or absolute positioned containers within content.
         hasInnerContainers: true,
     });
+
+    $('#toTop-button').click(function () {
+        $(window).scrollTo(0,500);
+    });
+
+    var waypoint = new Waypoint({
+        element: document.getElementById('waypoint'),
+        handler: function(direction) {
+            if (direction == 'down'){
+                $('#toolbar').show(100);
+            }
+            else {
+                $('#toolbar').hide(300);
+            }
+        },
+    })
 
 </script>
 </body>
