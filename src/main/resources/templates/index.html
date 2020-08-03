@@ -279,7 +279,7 @@
 </div>
 
 <!-- 底部footer -->
-<footer class="ui inverted vertical segment m-padding-tb-massive">
+<footer id="footer" class="ui inverted vertical segment m-padding-tb-massive">
     <div class="ui center aligned container m-container-large">
         <div class="ui grid stackable inverted divided">
             <div class="three wide column">
@@ -293,9 +293,9 @@
             <div class="three wide column">
                 <h4 class="ui inverted header m-opacity-mini">最新博客</h4>
                 <div class="ui inverted link list">
-                    <a href="#" class="item">用户故事</a>
-                    <a href="#" class="item">用户故事</a>
-                    <a href="#" class="item">用户故事</a>
+                    <a href="#" class="item">Python爬虫第一天</a>
+                    <a href="#" class="item">Spring学习</a>
+                    <a href="#" class="item">SpringBoot</a>
                 </div>
             </div>
 
@@ -324,7 +324,15 @@
 <script>
     $('.show').click(function(){
         $('.m-item').toggleClass('m-mobile-hide')
-    })
+    });
+    $(document).ready(function(){
+        let contentHeight = document.body.scrollHeight,//网页正文全文高度
+            winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+        if(!(contentHeight > winHeight)){
+            //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+            $("#footer").addClass("fixed-bottom");
+        }
+    });
 </script>
 </body>
 </html>
