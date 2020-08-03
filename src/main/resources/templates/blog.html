@@ -42,7 +42,7 @@
         <!-- 头部 -->
         <div class="ui attached segment padded">
             <div class="m-padding-lr">
-                <h1 class="ui aligned center m-margin-tb-small m-fontsize-large-em">缓存雪崩、缓存击穿、缓存穿透概念及其解决方案</h1>
+                <h1 class="typo-h1">中文网页重设与排版：<i class="serif">Typo.css</i></h1>
                 <div class="ui  horizontal item link list m-margin-tb-mini"> <!-- horizontal代表横着放置 -->
                     <div class="item">
                         <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7"
@@ -62,11 +62,9 @@
         <!-- 内容 -->
         <div class="ui attached segment padded">
             <div id="content" class="js-toc-content typo typo-selection m-padding-responsive m-black">
-                <h1>中文网页重设与排版：<i class="serif">Typo.css</i></h1><br/>
-
                 <h2 id="tagline" class="serif">一致化浏览器排版效果，构建最适合中文阅读的网页排版</h2>
 
-                <ol id="table" class="ui table">
+                <ol id="table">
                     <li><a href="#section1">关于 <i class="serif">Typo.css</i></a></li>
                     <li><a href="#section2">排版实例</a>
                         <ul>
@@ -582,7 +580,7 @@ h5,h6{font-size:1em;}
 </div>
 
 <!-- 底部footer -->
-<footer class="ui inverted vertical segment m-padding-tb-massive">
+<footer id="footer" class="ui inverted vertical segment m-padding-tb-massive">
     <div class="ui center aligned container m-container-large">
         <div class="ui grid stackable inverted divided">
             <div class="three wide column">
@@ -669,7 +667,16 @@ h5,h6{font-size:1em;}
                 $('#toolbar').hide(300);
             }
         },
-    })
+    });
+
+    $(document).ready(function(){
+        let contentHeight = document.body.scrollHeight,//网页正文全文高度
+            winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+        if(!(contentHeight > winHeight)){
+            //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+            $("#footer").addClass("fixed-bottom");
+        }
+    });
 
 </script>
 </body>

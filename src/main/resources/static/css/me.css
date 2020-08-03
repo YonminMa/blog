@@ -4,6 +4,13 @@ body{
     background: url("/images/dot.png") !important;
 }
 
+
+.fixed-bottom {
+    position: fixed !important;
+    bottom: 0 !important;
+    width:100% !important;
+}
+
 /*------ shadow ------*/
 .m-shadow-small{
     -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;

@@ -12,12 +12,3 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/blog?serverTimezone=CST
     username: root
     password: 521314
-
-  thymeleaf:
-    mode: HTML
-#logging:
-#  level:
-#    root: info
-#    yonmin: debug
-#  file:
-#    name: log/blog.log
