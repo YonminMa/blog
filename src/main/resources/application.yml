@@ -3,9 +3,14 @@ spring:
     mode: HTML
   profiles:
     active: dev
-#logging:
-#  level:
-#    root: info
-#    yonmin: debug
-#  file:
-#    name: log/blog.log
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{50} -%msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{50} -%msg%n"
+  level:
+    root: info
+    yonmin: debug
+  file:
+    name: log/blog.log
+    max-size: 1MB
+    max-history: 7
