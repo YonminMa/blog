@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[[${title}]]</title>
+    <link rel="stylesheet" href="/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="/lib/editormd/css/editormd.css" th:href="@{/lib/editormd/css/editormd.css}">
+    <link rel="stylesheet" href="/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.css">
+</head>
+<body>
+<nav th:fragment="menu(index)" class="ui inverted attached segment m-padding-tb-mini m-shadow-small" id="header">
+    <div class="ui container m-container-large">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item m-header">Yonmin</h2>
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${index=='博客'} ? 'active'"><i class="home icon"></i>博客</a>
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${index=='分类'} ? 'active'"><i class="idea icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${index=='标签'} ? 'active'"><i class="tags icon"></i>标签</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown item">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui avatar image">
+<!--                    <div>Yonmin</div>-->
+<!--                    <i class="dropdown icon"></i>-->
+                    <div class="menu">
+                        <a href="/admin/logout" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui button black icon m-top-right m-mobile-show show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+</body>
+</html>

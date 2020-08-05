@@ -1,31 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments::head('写博客')"></head>
+<head th:replace="commons/admin_fragments::head('写博客')"></head>
 <body>
 
 <!-- 导航 -->
-<nav class="ui inverted attached segment m-padding-tb-mini m-shadow-small" id="header">
-    <div class="ui container m-container-large">
-        <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item m-header">Yonmin</h2>
-            <a href="#" class="m-item active item m-mobile-hide"><i class="home icon"></i>博客</a>
-            <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-            <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
-            <div class="right m-item m-mobile-hide menu">
-                <div class="ui dropdown item">
-                    <div class="text"><img src="" alt="" class="ui avatar image"> Yonmin</div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a href="#" class="item">注销</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#" class="ui button black icon m-top-right m-mobile-show show">
-        <i class="sidebar icon"></i>
-    </a>
-</nav>
+<div th:replace="commons/admin_fragments::menu('博客')"></div>
 
 <!-- 二级导航 -->
 <div class="ui menu attached pointing">

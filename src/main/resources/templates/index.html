@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments::head('首页')"></head>
+<head th:replace="commons/fragments::head('首页')"></head>
 <body>
 
 <!-- 导航 -->
-<div th:replace="_fragments::menu('首页')"></div>
+<div th:replace="commons/fragments::menu('首页')"></div>
 
 
 <!-- 中间内容 -->
@@ -245,7 +245,7 @@
                 <!-- code -->
                 <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>
                 <div class="ui card centered"  style="width: 12em">
-                    <img src="images/wechatgzh.jpg" alt="" class="ui rounded image">
+                    <img src="/images/wechatgzh.jpg" alt="" class="ui rounded image">
                 </div>
             </div>
         </div>
@@ -253,7 +253,7 @@
 </div>
 
 <!-- 底部footer -->
-<div th:replace="_fragments::footer"></div>
+<div th:replace="commons/fragments::footer"></div>
 
 <script src="js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>

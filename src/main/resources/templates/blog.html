@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments::head('博客详情')"></head>
+<head th:replace="commons/fragments::head('博客详情')"></head>
 <body>
 
 <!-- 导航 -->
-<div th:replace="_fragments::menu('博客详情')"></div>
+<div th:replace="commons/fragments::menu('博客详情')"></div>
 
 
 <!-- 中间内容 -->
@@ -551,7 +551,7 @@ h5,h6{font-size:1em;}
 </div>
 
 <!-- 底部footer -->
-<div th:replace="_fragments::footer"></div>
+<div th:replace="commons/fragments::footer"></div>
 
 <script src="js/jquery.js"></script>
 <script src="lib/prism/prism.js"></script>
