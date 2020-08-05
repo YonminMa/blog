@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台登录</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="login-form">
+        <h1>Login</h1>
+        <form class="content" method="post" action="#" th:action="@{/admin/login}" onsubmit="return check()">
+            <div class="txtb">
+                <input type="text" name="username" id="username" required="required" readonly onfocus="this.removeAttribute('readonly');" onblur="this.setAttribute('readonly',true);">
+                <span data-placeholder="Username"></span>
+            </div>
+            <div class="txtb">
+                <input type="password" name="password" id="password" required="required" readonly onfocus="this.removeAttribute('readonly');" onblur="this.setAttribute('readonly',true);">
+                <span data-placeholder="Password"></span>
+            </div>
+
+            <button type="submit" id="submit" style="border: none">Login</button>
+            <div class="bottom-text">
+            </div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>
