@@ -3,6 +3,7 @@ package yonmin.blog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import yonmin.blog.domain.User;
 import yonmin.blog.service.UserService;
@@ -19,25 +20,17 @@ public class LoginController {
 
     @GetMapping
     public String loginPage(){
-        return "admin/login";
+        return "/admin/login";
     }
 
     @PostMapping("/login")
     public String login(@RequestParam String username,
                         @RequestParam String password,
                         HttpSession session){
-//        User user = userService.checkUser(username, password);
-//        if (user != null){
-//            user.setPassword(null);
-//            session.setAttribute("user", user);
-//            return "admin/blog-control";
-//        } else {
-//            return "redirect:/admin";
-//        }
         User user = userService.checkUser(username, password);
         user.setPassword(null);
         session.setAttribute("user", user);
-        return "admin/blog-control";
+        return "redirect:/admin/blogs";
     }
 
     @PostMapping("/check")

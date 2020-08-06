@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/admin_fragments::head('后台管理')"></head>
+<head th:replace="commons/admin_fragments::head('博客管理')"></head>
 <body>
 
 <!-- 导航 -->
@@ -10,8 +10,8 @@
 <div class="ui menu attached pointing">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" class="item">发布</a>
-            <a href="#" class="active teal item">列表</a>
+            <a href="#" th:href="@{/admin/blogs/input}" class="item">发布</a>
+            <a href="#" th:href="@{/admin/blogs}" class="active teal item">列表</a>
         </div>
     </div>
 </div>
@@ -78,7 +78,7 @@
                     <a class="item">上一页</a>
                     <a class="item">下一页</a>
                 </div>
-                <a href="new" class="ui teal basic button right floated">新增</a>
+                <a href="#" th:href="@{/admin/blogs/input}" class="ui teal basic button right floated">新增</a>
             </th>
             </tr>
             </tr>

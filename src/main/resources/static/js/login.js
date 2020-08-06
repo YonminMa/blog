@@ -14,7 +14,6 @@ $(document).ready(function(){
 function check() {
     let username = $("#username").val();
     let password = $("#password").val();
-    var flag;
     if (username === ''){
         $("#username").addClass("error_focus");
         return false;
@@ -22,12 +21,12 @@ function check() {
         $("#password").addClass("error_focus");
         return false;
     } else {
-        flag = false;
+        $.ajaxSettings.async = false;
+        let flag;
         $.post("/admin/check", {username:username, password:password}, function (data) {
-            $.ajaxSettings.async = false;
             if (data !== '') {
                 $('.bottom-text').empty();
-                $('.bottom-text').append("<div class='error' style='color: red'>" + data + "</div>");
+                $('.bottom-text').append(data);
                 flag = false;
             } else {
                 flag = true;

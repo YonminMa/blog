@@ -15,9 +15,9 @@
     <div class="ui container m-container-large">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item m-header">Yonmin</h2>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${index=='博客'} ? 'active'"><i class="home icon"></i>博客</a>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${index=='分类'} ? 'active'"><i class="idea icon"></i>分类</a>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${index=='标签'} ? 'active'"><i class="tags icon"></i>标签</a>
+            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${index=='博客'} ? 'active'"><i class="home icon"></i>博客</a>
+            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${index=='分类'} ? 'active'"><i class="idea icon"></i>分类</a>
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${index=='标签'} ? 'active'"><i class="tags icon"></i>标签</a>
             <div class="right m-item m-mobile-hide menu">
                 <div class="ui dropdown item">
                     <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui avatar image">
