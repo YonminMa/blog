@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/admin_fragments::head('分类新增')"></head>
+<body>
+
+<!-- 导航 -->
+<div th:replace="commons/admin_fragments::menu('分类')"></div>
+
+<!-- 二级导航 -->
+<div class="ui menu attached pointing">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/types/input}" class="active teal item">发布</a>
+            <a href="#" th:href="@{/admin/types}" class="item">列表</a>
+        </div>
+    </div>
+</div>
+
+<!-- 中间内容 -->
+<div class="m-padding-tb-massive" style="zoom: 0.8 !important;">
+    <div class="ui container m-container">
+        <form action="#" class="ui form" method="post" th:action="@{/admin/types}">
+            <input type="hidden" name="id" th:value="*{id}">
+            <div class="required field">
+                <div class="ui left labeled input">
+                    <label class="ui basic label m-padding m-fontsize-larger">名称</label>
+                    <input th:value="*{type} == null ? '' : *{type.getName()}" class="m-fontsize-larger" type="text" name="name" placeholder="分类名称">
+                </div>
+            </div>
+
+            <div class="ui error message"></div>
+
+            <div class="ui container right aligned" style="margin-right: 0 !important;">
+                <button type="button" class="ui button" onclick="windows.history.go(-1)">返回</button>
+                <button class="ui teal submit button">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
+<script>
+    $('.show').click(function(){
+        $('.m-item').toggleClass('m-mobile-hide')
+    });
+    $('.ui.dropdown').dropdown();
+    $('.ui.form').form({
+        fields:{
+            title:{
+                identifier:'name',
+                rules:[{
+                    type:'empty',
+                    prompt:'标题：请输入分类名称'
+                }]
+            }
+        }
+    });
+</script>
+</body>
+</html>
