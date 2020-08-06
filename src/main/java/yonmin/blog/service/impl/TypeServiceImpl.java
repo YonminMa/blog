@@ -11,6 +11,8 @@ import yonmin.blog.dao.TypeRepository;
 import yonmin.blog.domain.Type;
 import yonmin.blog.service.TypeService;
 
+import java.util.List;
+
 @Service
 public class TypeServiceImpl implements TypeService {
 
@@ -33,6 +35,11 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Page<Type> listType(Pageable pageable) {
         return typeRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Type> listType() {
+        return typeRepository.findAll();
     }
 
     @Transactional
