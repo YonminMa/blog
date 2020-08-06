@@ -5,6 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MarkdownController {
+
+    @RequestMapping("/")
+    public String indexPage(){
+        return "index";
+    }
+
     @RequestMapping("/blog")
     public String detailPage(){
         System.out.println("打开博客详情页");
@@ -34,16 +40,10 @@ public class MarkdownController {
         return "about";
     }
 
-    @RequestMapping("/admin")
-    public String adminPage(){
-        System.out.println("打开后台管理页");
-        return "admin/blog-control";
-    }
-
-    @RequestMapping("/new")
+    @RequestMapping("/new/new")
     public String newPage(){
         System.out.println("打开博客编辑页");
-        return "admin/blog-new";
+        return "/admin/blogs-input";
     }
 
 }
