@@ -19,6 +19,7 @@ public class Blog implements Serializable {
     private String Content;
     private String firstPicture;
     private String flag;
+    private String description;
     private Integer views;
     private boolean appreciation;
     private boolean shareStatement;
@@ -188,6 +189,14 @@ public class Blog implements Serializable {
 
     public String getTagIds() {
         return tagIds;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setTagIds(String tagIds) {

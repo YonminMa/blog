@@ -12,6 +12,7 @@ import yonmin.blog.dao.BlogRepository;
 import yonmin.blog.domain.Blog;
 import yonmin.blog.domain.Type;
 import yonmin.blog.service.BlogService;
+import yonmin.blog.utils.MyBeanUtils;
 import yonmin.blog.vo.BlogQuery;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -79,7 +80,8 @@ public class BlogServiceImpl implements BlogService {
                 e.printStackTrace();
             }
         }
-        BeanUtils.copyProperties(b, blog);
+        BeanUtils.copyProperties(blog, b, MyBeanUtils.getNullPropertyNames(blog));
+        b.setUpdateTime(new Date());
         return blogRepository.save(b);
     }
 
