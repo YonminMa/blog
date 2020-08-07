@@ -13,8 +13,9 @@ public class Blog implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-
     private String title;
+    @Basic(fetch = FetchType.LAZY) // 懒加载
+    @Lob // 大字段
     private String Content;
     private String firstPicture;
     private String flag;
@@ -28,6 +29,9 @@ public class Blog implements Serializable {
     private Date creatTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
+
+    @Transient
+    private String tagIds;
 
     // 建立表之间的映射关系
     @ManyToOne
@@ -180,6 +184,35 @@ public class Blog implements Serializable {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
+
+    public void init() {
+        this.tagIds = tagsToIds(this.getTags());
+    }
+    private String tagsToIds(List<Tag> tags) {
+        if (!tags.isEmpty()) {
+            StringBuffer ids = new StringBuffer();
+            boolean flag = false;
+            for (Tag tag : tags) {
+                if (flag) {
+                    ids.append(",");
+                } else {
+                    flag = true;
+                }
+                ids.append(tag.getId());
+            }
+            return ids.toString();
+        } else {
+            return tagIds;
+        }
     }
 
     @Override

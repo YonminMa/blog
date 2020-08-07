@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import yonmin.blog.dao.BlogRepository;
 import yonmin.blog.domain.Blog;
 import yonmin.blog.domain.Type;
@@ -17,7 +18,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,11 +56,19 @@ public class BlogServiceImpl implements BlogService {
         }, pageable);
     }
 
+    @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
+        if (blog.getId() == null){
+            blog.setCreatTime(new Date());
+            blog.setViews(0);
+        }
+        System.out.println("creatTime" + blog.getCreatTime());
+        blog.setUpdateTime(new Date());
         return blogRepository.save(blog);
     }
 
+    @Transactional
     @Override
     public Blog updateBlog(Long id, Blog blog) {
         Blog b = blogRepository.getOne(id);
@@ -72,6 +83,7 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.save(b);
     }
 
+    @Transactional
     @Override
     public void deleteBlog(Long id) {
         blogRepository.deleteById(id);

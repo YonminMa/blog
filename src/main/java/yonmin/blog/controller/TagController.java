@@ -52,7 +52,7 @@ public class TagController {
     }
 
     @PostMapping("/tags")
-    public String post(@Valid Tag tag, BindingResult result, RedirectAttributes attributes){
+    public String post(@Valid Tag tag, BindingResult result){
         if (result.hasErrors()){
             return "/admin/tags";
         }
