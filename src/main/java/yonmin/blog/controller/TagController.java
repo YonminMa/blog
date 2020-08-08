@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yonmin.blog.domain.Tag;
 import yonmin.blog.service.TagService;
-
 import javax.validation.Valid;
 
 @Controller
@@ -47,7 +45,11 @@ public class TagController {
     // 删除
     @GetMapping("tags/{id}/delete")
     public String delete(@PathVariable Long id){
-        tagService.deleteTag(id);
+        try {
+            tagService.deleteTag(id);
+        } catch (Exception e){
+
+        }
         return "redirect:/admin/tags";
     }
 

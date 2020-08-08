@@ -27,7 +27,7 @@ public class Blog implements Serializable {
     private boolean published;
     private boolean recommend;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creatTime;
+    private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
@@ -139,12 +139,12 @@ public class Blog implements Serializable {
         this.recommend = recommend;
     }
 
-    public Date getCreatTime() {
-        return creatTime;
+    public Date getcreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+    public void setcreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Date getUpdateTime() {
@@ -238,7 +238,7 @@ public class Blog implements Serializable {
                 ", commentabled=" + commentabled +
                 ", published=" + published +
                 ", recommend=" + recommend +
-                ", creatTime=" + creatTime +
+                ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';
     }
