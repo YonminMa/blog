@@ -3,7 +3,19 @@ body{
     word-wrap:break-word !important;
     background: url("/images/dot.png") !important;
 }
-
+/*.m-image-box{*/
+/*    height: 100%;*/
+/*    margin: 20px auto;*/
+/*    background: skyblue;*/
+/*    position: relative;*/
+/*    padding-bottom: 100%;       //这是重要属性*/
+/*}*/
+/*.m-image{*/
+/*    width: 100%;*/
+/*    position: absolute !important;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*}*/
 
 .fixed-bottom {
     position: fixed !important;
@@ -76,6 +88,10 @@ body{
 .m-padding-tb-mini{
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+}
+.m-padding-tb-small{
+    padding-top: 0.25em !important;
+    padding-bottom: 0.25em !important;
 }
 .m-padding-tb{
     padding-top: 1em !important;

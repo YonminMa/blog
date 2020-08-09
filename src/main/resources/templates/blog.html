@@ -13,26 +13,26 @@
         <!-- 头部 -->
         <div class="ui attached segment padded">
             <div class="m-padding-lr">
-                <h1 class="typo-h1">中文网页重设与排版：<i class="serif">Typo.css</i></h1>
+                <h1 class="typo-h1" th:text="${blog.title}">中文网页重设与排版：<i class="serif">Typo.css</i></h1>
                 <div class="ui  horizontal item link list m-margin-tb-mini"> <!-- horizontal代表横着放置 -->
                     <div class="item">
                         <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7"
-                             alt="Yonmin" class="ui avatar image">
-                        <div class="content"><a href="#">YonminMa</a></div>
+                             th:src="@{${blog.user.avatar}}" alt="Yonmin" class="ui avatar image">
+                        <div class="content"><a href="#" th:href="@{/about}" th:text="${blog.user.nickname}">YonminMa</a></div>
                     </div>
                     <div class="item">
-                        <i class="calendar icon m-icon"></i> 2020-7-28
+                        <i class="calendar icon m-icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-7-28</span>
                     </div>
-
                     <div class="item right basic">
-                        <div class="ui orange basic label">原创</div>
+                        <div class="ui orange basic label" th:text="${blog.flag}">原创</div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 内容 -->
         <div class="ui attached segment padded">
-            <div id="content" class="js-toc-content typo typo-selection m-padding-responsive m-black">
+            <!-- 文本内容 -->
+            <div id="content" class="js-toc-content typo typo-selection m-padding-responsive m-black" th:utext="${blog.content}">
                 <h2 id="tagline" class="serif">一致化浏览器排版效果，构建最适合中文阅读的网页排版</h2>
 
                 <ol id="table">
@@ -415,7 +415,7 @@ h5,h6{font-size:1em;}
 
             <!-- 标签 -->
             <div class="m-padding-lr">
-                <div class="ui teal basic label m-fontsize-medium">方法论</div>
+                <div class="ui teal basic label m-fontsize-medium" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论</div>
             </div>
             <!-- 赞赏 -->
             <div class="ui center aligned basic segment">
@@ -424,11 +424,11 @@ h5,h6{font-size:1em;}
                     <div class="ui orange basic label">
                         <div class="ui images" style="font-size: inherit !important;">
                             <div class="image">
-                                <img src="images/ZFBM.jpg" alt="" style="width: 130px;" class="ui rounded bordered image">
+                                <img src="images/ZFBM.jpg" th:src="@{/images/ZFBM.jpg}" alt="" style="width: 130px;" class="ui rounded bordered image">
                                 <div>支付宝</div>
                             </div>
                             <div class="image">
-                                <img src="images/wechatM.png" alt="" style="width: 130px;" class="ui rounded bordered image">
+                                <img src="images/wechatM.png" th:src="@{/images/wechatM.png}" alt="" style="width: 130px;" class="ui rounded bordered image">
                                 <div>微信</div>
                             </div>
                         </div>
@@ -442,11 +442,12 @@ h5,h6{font-size:1em;}
         <div class="ui attached positive message">
             <div class="ui middle aligned stackable grid m-margin-lr">
                 <div class="twelve wide column m-fontsize-medium">
-                    <p>版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。</p>
-                    <p>本文链接：<a href="https://blog.csdn.net/weixin_44547562/article/details/107221398">https://blog.csdn.net/weixin_44547562/article/details/107221398</a></p>
+                    <li>作者 [[${blog.user.nickname}]] <a href="#" th:href="@{/about}">(联系作者)</a></li>
+                    <li>发表时间 [[${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm')}]]</li>
+                    <li>版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。</li>
                 </div>
                 <div class="four wide column m-padding-lr-large">
-                    <img src="images/wechat.jpg" style="width: 120px;" alt="" class="ui centered rounded bordered image">
+                    <img src="images/wechat.jpg" th:src="@{/images/wechat.jpg}" style="width: 120px;" alt="" class="ui centered rounded bordered image">
                 </div>
             </div>
         </div>
@@ -553,11 +554,11 @@ h5,h6{font-size:1em;}
 <!-- 底部footer -->
 <div th:replace="commons/fragments::footer"></div>
 
-<script src="js/jquery.js"></script>
-<script src="lib/prism/prism.js"></script>
-<script src="lib/tocbot/tocbot.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="lib/waypoints/jquery.waypoints.js"></script>
+<script src="/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+<script src="/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+<script src="/lib/tocbot/tocbot.js" th:src="@{/lib/tocbot/tocbot.js}"></script>
+<script src="/js/jquery.scrollTo.min.js" th:src="@{/js/jquery.scrollTo.min.js}"></script>
+<script src="/lib/waypoints/jquery.waypoints.js" th:src="@{/lib/waypoints/jquery.waypoints.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
 <script>
     $('.show').click(function(){

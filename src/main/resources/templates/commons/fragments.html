@@ -18,11 +18,11 @@
     <div class="ui container m-container-large">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item m-header">Yonmin</h2>
-            <a href="/" class="m-item item m-mobile-hide" th:classappend="${index=='首页'} ? 'active'"><i class="home icon"></i>首页</a>
-            <a href="types" class="m-item item m-mobile-hide" th:classappend="${index=='分类'} ? 'active'"><i class="idea icon"></i>分类</a>
-            <a href="tags" class="m-item item m-mobile-hide" th:classappend="${index=='标签'} ? 'active'"><i class="tags icon"></i>标签</a>
-            <a href="archives" class="m-item item m-mobile-hide" th:classappend="${index=='归档'} ? 'active'"><i class="clone icon"></i>归档</a>
-            <a href="about" class="m-item item m-mobile-hide" th:classappend="${index=='关于我'} ? 'active'"><i class="info icon"></i>关于我</a>
+            <a href="/" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${index=='首页'} ? 'active'"><i class="home icon"></i>首页</a>
+            <a href="types" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${index=='分类'} ? 'active'"><i class="idea icon"></i>分类</a>
+            <a href="tags" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${index=='标签'} ? 'active'"><i class="tags icon"></i>标签</a>
+            <a href="archives" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${index=='归档'} ? 'active'"><i class="clone icon"></i>归档</a>
+            <a href="about" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${index=='关于我'} ? 'active'"><i class="info icon"></i>关于我</a>
             <div class="right item m-item m-mobile-hide m-margin-tb-small">
                 <div class="ui icon inverted transparent input">
                     <input type="text" placeholder="Search...">

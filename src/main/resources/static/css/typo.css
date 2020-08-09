@@ -1,6 +1,6 @@
 /* 要注意表单元素并不继承父级 font 的问题 */
 .typo {
-    font: 300 18px/1.6 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif !important;
+    font: 300 16px/1.6 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif !important;
 }
 /*.typo p{*/
 /*    font-size: 18px !important;*/
@@ -119,17 +119,24 @@ mark {
 }
 
 /* 代码片断 */
-.typo pre, .typo code, .typo pre tt {
-    /*font-family: Courier, 'Courier New', monospace !important;*/
+/*.typo pre, .typo code, .typo pre tt {*/
+/*    font-family: Courier, 'Courier New', monospace !important;*/
+/*}*/
+.typo code {
+    font-family: Source Code Pro,DejaVu Sans Mono,Ubuntu Mono,Anonymous Pro,Droid Sans Mono,Menlo,Monaco,Consolas,Inconsolata,Courier,monospace,PingFang SC,Microsoft YaHei,sans-serif !important;
+    font-size: 14px !important;
+    padding: 2px 4px !important;
+    background-color: #f9f2f4;
+    color: #c7254e;
 }
 
-.typo pre {
-    background: #f8f8f8 !important;
-    border: 1px solid #ddd !important;
-    padding: 1em 1.5em !important;
-    display: block !important;
-    -webkit-overflow-scrolling: touch !important;
-}
+/*.typo pre {*/
+/*    background: #f8f8f8 !important;*/
+/*    border: 1px solid #ddd !important;*/
+/*    padding: 1em 1.5em !important;*/
+/*    display: block !important;*/
+/*    -webkit-overflow-scrolling: touch !important;*/
+/*}*/
 
 /* 一致化 horizontal rule */
 .typo hr {
@@ -195,7 +202,7 @@ figcaption {
 /* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
 .typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6,
 .typo-h1, .typo-h2, .typo-h3, .typo-h4, .typo-h5, .typo-h6 {
-    font-weight: 100 !important;
+    font-weight: 500 !important;
     color: #000 !important;
     margin-top: 0.8em !important;
     margin-bottom: 0.6em !important;
@@ -203,19 +210,19 @@ figcaption {
 }
 
 .typo h1, .typo-h1 {
-    font-size: 2em !important;
+    font-size: 1.7em !important;
 }
 
 .typo h2, .typo-h2 {
-    font-size: 1.8em !important;
+    font-size: 1.5em !important;
 }
 
 .typo h3, .typo-h3 {
-    font-size: 1.6em !important;
+    font-size: 1.3em !important;
 }
 
 .typo h4, .typo-h4 {
-    font-size: 1.4em !important;
+    font-size: 1.1em !important;
 }
 
 .typo h5, .typo h6, .typo-h5, .typo-h6 {
@@ -224,7 +231,7 @@ figcaption {
 
 /* 在文章中，应该还原 ul 和 ol 的样式 */
 .typo ul, .typo-ul {
-    margin-left: 1.3em !important;
+    margin-left: 1.9em !important;
     list-style: disc !important;
 }
 
