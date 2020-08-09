@@ -120,7 +120,7 @@
                 <div class="ui segments m-margin-top-large">
                     <div class="ui secondary segment m-fontsize-medium"><i class="bookmark icon"></i>最新推荐</div>
                     <div class="ui segment" th:each="blog : ${recommendBlogs}">
-                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="blog.title">Java虚拟机学习笔记（一）</a>
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.getTitle()}">Java虚拟机学习笔记（一）</a>
                     </div>
                 </div>
                 <!-- code -->
@@ -136,7 +136,7 @@
 <!-- 底部footer -->
 <div th:replace="commons/fragments::footer"></div>
 
-<script src="js/jquery.js"></script>
+<script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
 <script>
     $('.show').click(function(){
@@ -149,6 +149,7 @@
             $("#footer").addClass("fixed-bottom");
         }
     });
+    $('.newblog-container').load(/*[[@{/footer/newblogs}]]*/"/footer/newblogs")
 </script>
 </body>
 </html>

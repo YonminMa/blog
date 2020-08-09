@@ -1,6 +1,5 @@
 package yonmin.blog.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -36,4 +35,12 @@ public class IndexController {
         model.addAttribute("blog", blogService.getAndConvert(id));
         return "blog";
     }
+
+    @GetMapping("/footer/newblogs")
+    public String newblogs(Model model) {
+        model.addAttribute("newblogs", blogService.listRecommendBlogTop(3));
+        System.out.println("访问成功");
+        return "/commons/fragments :: newbloglist";
+    }
+
 }
