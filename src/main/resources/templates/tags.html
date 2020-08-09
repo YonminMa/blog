@@ -18,143 +18,58 @@
                     <h3 class="ui teal header">标签</h3>
                 </div>
                 <div class="right aligned column">
-                    共 <h2 class="ui orange header m-inline-block m-text-thin">14</h2> 个
+                    共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${#arrays.length(tags)}">14</h2> 个
                 </div>
             </div>
         </div>
         <!-- list -->
         <div class="ui segment attached">
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic teal left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
-            <div class="ui segment labeled large button m-margin-lr m-margin-tb-small">
-                <a href="#" class="ui basic left pointing label m-opacity-mini m-text-thin">SpringBoot</a>
-            </div>
+            <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic left pointing label large m-margin-tb-mini" th:classappend="${tag.id==activeTagId} ? 'teal'" th:each="tag : ${tags}">
+                <span th:text="${tag.name}">方法论</span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
+            </a>
         </div>
         <!-- contents -->
         <div class="ui attached segment">
             <!-- content -->
-            <div class="ui padded vertical segment m-padding-buttom-zero">
+            <div class="ui padded vertical segment m-padding-tb-large" th:each="blog : ${page.content}">
                 <div class="ui mobile reversed stackable grid">
                     <div class="eleven wide column">
-                        <h3 class="ui header">SpringBoot搭建博客系统</h3>
-                        <p class="m-text">SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统</p>
+                        <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">SpringBoot搭建博客系统</a></h3>
+                        <p class="m-text" th:text="|${blog.description}...|">SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统</p>
                         <div class="ui grid">
-                            <div class="eleven wide column m-padding-r-zero">
-                                <div class="ui small horizontal link list"> <!-- horizontal代表横着放置 -->
-                                    <div class="item">
-                                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7"
-                                             alt="Yonmin" class="ui avatar image">
-                                        <div class="content"><a href="#">YonminMa</a></div>
-                                    </div>
-                                    <div class="item m-margin-lr-small">
-                                        <i class="calendar icon m-icon"></i>2020-7-28
-                                    </div>
-                                    <div class="item m-margin-lr-small">
-                                        <i class="eye icon m-icon"></i>218
+                            <div class="row">
+                                <div class="eleven wide column m-padding-r-zero">
+                                    <div class="ui small horizontal link list"> <!-- horizontal代表横着放置 -->
+                                        <div class="item">
+                                            <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7"
+                                                 th:src="@{${blog.user.avatar}}" alt="Yonmin" class="ui avatar image">
+                                            <div class="content"><a th:text="${blog.user.nickname}" href="#">YonminMa</a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon m-icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-7-28</span>
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon m-icon"></i><span th:text="${blog.views}">218</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="five wide column center aligned middle aligned">
+                                    <a href="#" th:text="${blog.type.name}" class="ui teal basic label m-padding-mini m-text-thin">认知升级</a>
+                                </div>
                             </div>
-                            <div class="five wide column center aligned middle aligned">
-                                <a href="#" class="ui teal basic label m-padding-mini m-text-thin m-margin-lr-zero">认知升级</a>
+                            <div class="row">
+                                <div class="column">
+                                    <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" th:each="tag : ${blog.tags}" th:text="${tag.name}" class="ui basic left pointing teal label m-padding-tb-small m-text-thin">标签</a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="five wide column">
-                        <a href="#" target="_blank">
-                            <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui centered round image">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- content -->
-            <div class="ui padded vertical segment m-padding-buttom-zero">
-                <div class="ui mobile reversed stackable grid">
-                    <div class="eleven wide column">
-                        <h3 class="ui header">SpringBoot搭建博客系统</h3>
-                        <p class="m-text">SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统</p>
-                        <div class="ui grid">
-                            <div class="eleven wide column m-padding-r-zero">
-                                <div class="ui small horizontal link list"> <!-- horizontal代表横着放置 -->
-                                    <div class="item">
-                                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7"
-                                             alt="Yonmin" class="ui avatar image">
-                                        <div class="content"><a href="#">YonminMa</a></div>
-                                    </div>
-                                    <div class="item m-margin-lr-small">
-                                        <i class="calendar icon m-icon"></i>2020-7-28
-                                    </div>
-                                    <div class="item m-margin-lr-small">
-                                        <i class="eye icon m-icon"></i>218
-                                    </div>
-                                </div>
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                            <div class="m-image-box">
+                                <img th:src="@{${blog.firstPicture}}" src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui centered round image m-image">
                             </div>
-                            <div class="five wide column center aligned middle aligned">
-                                <a href="#" class="ui teal basic label m-padding-mini m-text-thin m-margin-lr-zero">认知升级</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="five wide column">
-                        <a href="#" target="_blank">
-                            <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui centered round image">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- content -->
-            <div class="ui padded vertical segment m-padding-buttom-zero">
-                <div class="ui mobile reversed stackable grid">
-                    <div class="eleven wide column">
-                        <h3 class="ui header">SpringBoot搭建博客系统</h3>
-                        <p class="m-text">SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统SpringBoot搭建博客系统</p>
-                        <div class="ui grid">
-                            <div class="eleven wide column m-padding-r-zero">
-                                <div class="ui small horizontal link list"> <!-- horizontal代表横着放置 -->
-                                    <div class="item">
-                                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7"
-                                             alt="Yonmin" class="ui avatar image">
-                                        <div class="content"><a href="#">YonminMa</a></div>
-                                    </div>
-                                    <div class="item m-margin-lr-small">
-                                        <i class="calendar icon m-icon"></i>2020-7-28
-                                    </div>
-                                    <div class="item m-margin-lr-small">
-                                        <i class="eye icon m-icon"></i>218
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="five wide column center aligned middle aligned">
-                                <a href="#" class="ui teal basic label m-padding-mini m-text-thin m-margin-lr-zero">认知升级</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="five wide column">
-                        <a href="#" target="_blank">
-                            <img src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui centered round image">
                         </a>
                     </div>
                 </div>
@@ -162,13 +77,13 @@
         </div>
 
         <!-- footer -->
-        <div class="ui buttom segment attached">
+        <div class="ui segment attached" th:if="${page.totalPages} > 1">
             <div class="ui middle aligned two column grid">
                 <div class="column">
-                    <a href="#" class="ui button mini teal basic">上一页</a>
+                    <a th:href="@{/(page=${page.number}-1)}" class="item" th:unless="${page.first}">上一页</a>
                 </div>
                 <div class="right aligned column">
-                    <a href="#" class="ui button mini teal basic">下一页</a>
+                    <a th:href="@{/(page=${page.number}+1)}" class="item" th:unless="${page.first}">下一页</a>
                 </div>
             </div>
         </div>

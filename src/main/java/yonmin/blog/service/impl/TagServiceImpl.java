@@ -4,11 +4,14 @@ import javassist.NotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import yonmin.blog.dao.TagRepository;
 import yonmin.blog.domain.Tag;
+import yonmin.blog.domain.Type;
 import yonmin.blog.service.TagService;
 
 import java.util.ArrayList;
@@ -45,7 +48,19 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public List<Tag> listTag(String ids) {
-        return tagRepository.findAll();
+        List<Tag> tags = new ArrayList<>();
+        List<Long> longs = convertToList(ids);
+        for (Long aLong : longs) {
+            tags.add(tagRepository.getOne(aLong));
+        }
+        return tags;
+    }
+
+    @Override
+    public List<Tag> listTagTop(Integer size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = PageRequest.of(0, size, sort);
+        return tagRepository.findTop(pageable);
     }
 
     private List<Long> convertToList(String ids) {
