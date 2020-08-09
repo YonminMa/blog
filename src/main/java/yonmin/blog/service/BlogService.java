@@ -6,6 +6,7 @@ import yonmin.blog.domain.Blog;
 import yonmin.blog.vo.BlogQuery;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BlogService {
 
@@ -20,6 +21,11 @@ public interface BlogService {
     Page<Blog> listBlog(Long tagId, Pageable pageable);
 
     List<Blog> listRecommendBlogTop(Integer size);
+
+    // 归档页
+    Map<String, List<Blog>> archiveBlog();
+
+    Long countBlog();
 
     Blog saveBlog(Blog blog);
 

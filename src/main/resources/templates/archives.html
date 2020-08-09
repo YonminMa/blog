@@ -18,54 +18,23 @@
                     <h3 class="ui teal header">归档</h3>
                 </div>
                 <div class="right aligned column">
-                    共 <h2 class="ui orange header m-inline-block m-text-thin">30</h2> 篇博客
+                    共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${blogCount}">30</h2> 篇博客
                 </div>
             </div>
         </div>
         <!-- list -->
-        <h3 class="ui header center aligned">2020</h3>
-        <div class="ui fluid vertical menu">
-            <a href="#" class="item">
-                <span>
-                    <i class="teal circle icon m-icon"></i>SpringBoot搭建个人博客系统
-                    <div class="ui basic teal label m-padding-tiny m-margin-lr m-mobile-hide">9月03日</div>
-                </span>
-                <div class="ui orange basic label m-mobile-hide">原创</div>
-            </a>
-            <a href="#" class="item">
-                <span>
-                    <i class="teal circle icon m-icon"></i>SpringBoot搭建个人博客系统
-                    <div class="ui basic teal label m-padding-tiny m-margin-lr m-mobile-hide">9月03日</div>
-                </span>
-                <div class="ui orange basic label m-mobile-hide">原创</div>
-            </a>
-            <a href="#" class="item">
-                <span>
-                    <i class="teal circle icon m-icon"></i>SpringBoot搭建个人博客系统
-                    <div class="ui basic teal label m-padding-tiny m-margin-lr m-mobile-hide">9月03日</div>
-                </span>
-                <div class="ui orange basic label m-mobile-hide">原创</div>
-            </a>
-            <a href="#" class="item">
-                <span>
-                    <i class="teal circle icon m-icon"></i>SpringBoot搭建个人博客系统
-                    <div class="ui basic teal label m-padding-tiny m-margin-lr m-mobile-hide">9月03日</div>
-                </span>
-                <div class="ui orange basic label m-mobile-hide">原创</div>
-            </a>
-        </div>
-        <h3 class="ui header center aligned">2019</h3>
-        <div class="ui fluid vertical menu">
-            <a href="#" class="item">
-                <span>
-                    <i class="teal circle icon m-icon"></i>SpringBoot搭建个人博客系统
-                    <div class="ui basic teal label m-padding-tiny m-margin-lr m-mobile-hide">9月03日</div>
-                </span>
-                <div class="ui orange basic label m-mobile-hide">原创</div>
-            </a>
-        </div>
-
-
+        <th:block th:each="item : ${archiveMap}">
+            <h3 class="ui header center aligned" th:text="${item.key}">2020</h3>
+            <div class="ui fluid vertical menu">
+                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" th:each="blog : ${item.value}">
+                    <span>
+                        <i class="teal circle icon m-icon"></i><span th:text="${blog.title}">SpringBoot搭建个人博客系统</span>
+                        <div class="ui basic teal label m-padding-tiny m-margin-lr m-mobile-hide" th:text="${#dates.format(blog.getcreateTime(), 'yyyy-MM-dd')}">9月03日</div>
+                    </span>
+                    <div class="ui orange basic label m-mobile-hide" th:text="${blog.flag}">原创</div>
+                </a>
+            </div>
+        </th:block>
     </div>
 </div>
 

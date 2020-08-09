@@ -19,9 +19,7 @@ import yonmin.blog.utils.MyBeanUtils;
 import yonmin.blog.vo.BlogQuery;
 
 import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -96,6 +94,21 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.findTop(pageable);
     }
 
+    @Override
+    public Map<String, List<Blog>> archiveBlog() {
+        List<String> years = blogRepository.findGroupYear();
+        Map<String, List<Blog>> map = new LinkedHashMap<>();
+        for (String year : years) {
+            map.put(year, blogRepository.findByYear(year));
+        }
+        return map;
+    }
+
+    @Override
+    public Long countBlog() {
+        return blogRepository.count();
+    }
+
     @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
@@ -103,7 +116,6 @@ public class BlogServiceImpl implements BlogService {
             blog.setcreateTime(new Date());
             blog.setViews(0);
         }
-        System.out.println("createTime" + blog.getcreateTime());
         blog.setUpdateTime(new Date());
         return blogRepository.save(blog);
     }
