@@ -18,7 +18,7 @@ public class Blog implements Serializable {
     @Lob // 大字段
     private String Content;
     private String firstPicture;
-    private String flag;
+    private String flag = "原创";
     private String description;
     private Integer views;
     private boolean appreciation;
