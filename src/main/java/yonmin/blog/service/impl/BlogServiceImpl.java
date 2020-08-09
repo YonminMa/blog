@@ -141,4 +141,9 @@ public class BlogServiceImpl implements BlogService {
     public void deleteBlog(Long id) {
         blogRepository.deleteById(id);
     }
+
+    @Override
+    public void updateViews(Long id) {
+        blogRepository.updateViews(id);
+    }
 }
