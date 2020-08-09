@@ -3,19 +3,17 @@ body{
     word-wrap:break-word !important;
     background: url("/images/dot.png") !important;
 }
-/*.m-image-box{*/
-/*    height: 100%;*/
-/*    margin: 20px auto;*/
-/*    background: skyblue;*/
-/*    position: relative;*/
-/*    padding-bottom: 100%;       //这是重要属性*/
-/*}*/
-/*.m-image{*/
-/*    width: 100%;*/
-/*    position: absolute !important;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*}*/
+.m-image-box{
+    position: absolute;
+    height: 110px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.m-image{
+    height: 100%;
+}
 
 .fixed-bottom {
     position: fixed !important;

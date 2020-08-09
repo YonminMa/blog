@@ -418,7 +418,7 @@ h5,h6{font-size:1em;}
                 <div class="ui teal basic label m-fontsize-medium" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论</div>
             </div>
             <!-- 赞赏 -->
-            <div class="ui center aligned basic segment">
+            <div class="ui center aligned basic segment" th:if="${blog.isAppreciation() == true}">
                 <button id="payButton" class="ui orange basic circular button m-fontsize-medium">赞赏</button>
                 <div class="ui payQR flowing popup center transition hidden">
                     <div class="ui orange basic label">
@@ -439,7 +439,7 @@ h5,h6{font-size:1em;}
         </div>
 
         <!-- 博客信息 -->
-        <div class="ui attached positive message">
+        <div class="ui attached positive message" th:if="${blog.isShareStatement() == true}">
             <div class="ui middle aligned stackable grid m-margin-lr">
                 <div class="twelve wide column m-fontsize-medium">
                     <li>作者 [[${blog.user.nickname}]] <a href="#" th:href="@{/about}">(联系作者)</a></li>
@@ -452,7 +452,7 @@ h5,h6{font-size:1em;}
             </div>
         </div>
         <!-- 评论区 -->
-        <div id="comment-container" class="ui bottom attached segment">
+        <div id="comment-container" class="ui bottom attached segment" th:if="${blog.isCommentabled() == true}">
             <!-- 留言区 -->
             <div class="ui segment teal m-margin-lr">
                 <div class="ui  m-fontsize-medium comments">

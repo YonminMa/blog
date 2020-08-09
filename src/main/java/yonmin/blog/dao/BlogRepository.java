@@ -21,7 +21,7 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     @Transactional
     @Modifying
     @Query("update Blog b set b.views = b.views + 1 where b.id = ?1")
-    int updateViews(Long id);
+    void updateViews(Long id);
 
     @Query("select b from Blog b where function('date_format', b.createTime, '%Y') = ?1")
     List<Blog> findByYear(String year);
