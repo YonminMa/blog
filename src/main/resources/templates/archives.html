@@ -30,8 +30,8 @@
                     <span>
                         <i class="teal circle icon m-icon"></i><span th:text="${blog.title}">SpringBoot搭建个人博客系统</span>
                         <div class="ui basic teal label m-padding-tiny m-margin-lr m-mobile-hide" th:text="${#dates.format(blog.getcreateTime(), 'yyyy-MM-dd')}">9月03日</div>
+                        <div class="ui orange basic label m-mobile-hide" th:text="${blog.flag}" style="float: right">原创</div>
                     </span>
-                    <div class="ui orange basic label m-mobile-hide" th:text="${blog.flag}">原创</div>
                 </a>
             </div>
         </th:block>

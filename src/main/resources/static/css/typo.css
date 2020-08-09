@@ -1,6 +1,6 @@
 /* 要注意表单元素并不继承父级 font 的问题 */
 .typo {
-    font: 300 16px/1.6 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif !important;
+    font: 300 16px PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif !important;
 }
 /*.typo p{*/
 /*    font-size: 18px !important;*/
@@ -155,7 +155,7 @@ figcaption {
 }
 
 .typo strong, .typo b {
-    font-weight: bold !important;
+    font-weight: 600 !important;
     color: #000 !important;
 }
 
