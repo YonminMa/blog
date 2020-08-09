@@ -14,14 +14,11 @@ import yonmin.blog.dao.BlogRepository;
 import yonmin.blog.domain.Blog;
 import yonmin.blog.domain.Type;
 import yonmin.blog.service.BlogService;
+import yonmin.blog.utils.MarkdownUtils;
 import yonmin.blog.utils.MyBeanUtils;
 import yonmin.blog.vo.BlogQuery;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import javax.xml.crypto.Data;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +32,23 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlog(Long id) {
         return blogRepository.getOne(id);
+    }
+
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.getOne(id);
+        if (blog == null) {
+            try {
+                throw new NotFoundException("博客不存在");
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog, b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
     }
 
     @Override
@@ -62,6 +76,17 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Page<Blog> listBlog(Pageable pageable) {
         return blogRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Blog> listBlog(Long tagId, Pageable pageable) {
+        return blogRepository.findAll(new Specification<Blog>() {
+            @Override
+            public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Join join = root.join("tags");
+                return criteriaBuilder.equal(join.get("id"), tagId);
+            }
+        }, pageable);
     }
 
     @Override

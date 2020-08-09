@@ -1,4 +1,4 @@
-package yonmin.blog.controller;
+package yonmin.blog.controller.admin;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

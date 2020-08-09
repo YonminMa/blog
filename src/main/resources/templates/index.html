@@ -57,7 +57,9 @@
 
                             <div class="five wide column">
                                 <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
-                                    <img th:src="@{${blog.firstPicture}}" src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui centered round image">
+                                    <div class="m-image-box">
+                                        <img th:src="@{${blog.firstPicture}}" src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui centered round image m-image">
+                                    </div>
                                 </a>
                             </div>
                         </div>
@@ -91,7 +93,7 @@
                     </div>
                     <div class="ui segment">
                         <div class="ui vertical menu fluid">
-                            <a href="#" class="item" th:each="type : ${types}">
+                            <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type : ${types}">
                                 <span th:text="${type.name}">学习日志</span>
                                 <div class="ui teal basic label" th:text="${#arrays.length(type.blogs)}">13</div>
                             </a>
@@ -109,7 +111,7 @@
                         </div>
                     </div>
                     <div class="ui segment">
-                        <a href="#" class="ui teal left pointing basic label m-margin-tb-mini" th:each="tag : ${tags}">
+                        <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui teal left pointing basic label m-margin-tb-mini" th:each="tag : ${tags}">
                             <span th:text="${tag.name}"></span><div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
                         </a>
                     </div>
