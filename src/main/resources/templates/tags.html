@@ -59,7 +59,7 @@
                             </div>
                             <div class="row">
                                 <div class="column">
-                                    <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" th:each="tag : ${blog.tags}" th:text="${tag.name}" class="ui basic left pointing teal label m-padding-tb-small m-text-thin">标签</a>
+                                    <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" th:each="tag : ${blog.tags}" th:text="${tag.name}" class="ui basic left pointing label m-padding-tb-small m-text-thin" th:classappend="${tag.id == activeTagId} ? 'teal'">标签</a>
                                 </div>
                             </div>
                         </div>
