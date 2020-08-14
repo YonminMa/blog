@@ -16,7 +16,7 @@ import yonmin.blog.domain.Type;
 import yonmin.blog.service.BlogService;
 import yonmin.blog.utils.MarkdownUtils;
 import yonmin.blog.utils.MyBeanUtils;
-import yonmin.blog.vo.BlogQuery;
+import yonmin.blog.domain.BlogQuery;
 
 import javax.persistence.criteria.*;
 import java.util.*;
@@ -99,7 +99,9 @@ public class BlogServiceImpl implements BlogService {
         List<String> years = blogRepository.findGroupYear();
         Map<String, List<Blog>> map = new LinkedHashMap<>();
         for (String year : years) {
-            map.put(year, blogRepository.findByYear(year));
+            List<Blog> listBlog = blogRepository.findByYear(year);
+            Collections.reverse(listBlog);
+            map.put(year, listBlog);
         }
         return map;
     }

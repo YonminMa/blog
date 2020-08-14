@@ -3,7 +3,7 @@ package yonmin.blog.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import yonmin.blog.domain.Blog;
-import yonmin.blog.vo.BlogQuery;
+import yonmin.blog.domain.BlogQuery;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package yonmin.blog.vo;
+package yonmin.blog.domain;
 
 public class BlogQuery {
 

@@ -16,7 +16,7 @@ import yonmin.blog.domain.User;
 import yonmin.blog.service.BlogService;
 import yonmin.blog.service.TagService;
 import yonmin.blog.service.TypeService;
-import yonmin.blog.vo.BlogQuery;
+import yonmin.blog.domain.BlogQuery;
 
 import javax.servlet.http.HttpSession;
 

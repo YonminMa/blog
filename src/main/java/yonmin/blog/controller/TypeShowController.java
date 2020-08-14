@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import yonmin.blog.domain.Type;
 import yonmin.blog.service.BlogService;
 import yonmin.blog.service.TypeService;
-import yonmin.blog.vo.BlogQuery;
+import yonmin.blog.domain.BlogQuery;
 
 import java.util.List;
 

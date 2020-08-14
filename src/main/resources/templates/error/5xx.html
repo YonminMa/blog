@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>错误</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Error Page</title>
+    <link rel="stylesheet" href="/css/404.css">
 </head>
 <body>
-<h1>[[${status}]]</h1>
-<p><strong>[[${error}]]</strong></p>
+<div class="error-page">
+    <div class="content">
+        <h1 th:data-text="${status}" th:text="${status}">5xx</h1>
+        <h4 th:data-text="${error}" th:text="${error}">Opps!</h4>
+        <p>Sorry, something wrong has happened. If you think something is broken, report a problem.</p>
+        <div class="btns">
+            <a href="#" th:href="@{/}">return home</a>
+            <a href="#" th:href="@{/}">report problem</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
