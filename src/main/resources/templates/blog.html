@@ -542,7 +542,7 @@ h5,h6{font-size:1em;}
 <div id="toolbar" class="m-padding m-fixed m-right-bottom" style="display: none">
     <div class="ui vertical icon buttons">
         <button type="button" class="ui teal toc button">目录</button>
-        <a href="#comment-container" type="button" class="ui teal button">评论</a>
+        <a href="#comment-container" type="button" class="ui teal button" th:if="${blog.isCommentabled() == true}">评论</a>
         <div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i></div>
     </div>
 </div>
