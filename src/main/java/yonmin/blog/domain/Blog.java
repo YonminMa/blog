@@ -17,6 +17,8 @@ public class Blog implements Serializable {
     @Basic(fetch = FetchType.LAZY) // 懒加载
     @Lob // 大字段
     private String content;
+    @Basic(fetch = FetchType.LAZY) // 懒加载
+    @Lob // 大字段
     private String firstPicture;
     private String flag = "原创";
     private String description;
