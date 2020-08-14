@@ -16,7 +16,7 @@ public class Blog implements Serializable {
     private String title;
     @Basic(fetch = FetchType.LAZY) // 懒加载
     @Lob // 大字段
-    private String Content;
+    private String content;
     private String firstPicture;
     private String flag = "原创";
     private String description;
@@ -68,11 +68,11 @@ public class Blog implements Serializable {
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     public String getFirstPicture() {
@@ -229,7 +229,7 @@ public class Blog implements Serializable {
         return "Blog{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", Content='" + Content + '\'' +
+                ", content='" + content + '\'' +
                 ", firstPicture='" + firstPicture + '\'' +
                 ", flag='" + flag + '\'' +
                 ", views=" + views +

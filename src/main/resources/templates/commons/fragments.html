@@ -24,10 +24,12 @@
             <a href="archives" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${index=='归档'} ? 'active'"><i class="clone icon"></i>归档</a>
             <a href="about" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${index=='关于我'} ? 'active'"><i class="info icon"></i>关于我</a>
             <div class="right item m-item m-mobile-hide m-margin-tb-small">
-                <div class="ui icon inverted transparent input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
+                <form name="search" target="_blank" th:action="@{/search}" method="post">
+                    <div id="blog-container" class="ui icon inverted transparent input">
+                        <input id="query" name="query" type="text" placeholder="Search..." th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

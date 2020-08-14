@@ -1,5 +1,6 @@
 package yonmin.blog.dao;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -14,6 +15,9 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
 
     @Query("select b from Blog b where b.recommend = true")
     List<Blog> findTop(Pageable pageable);
+
+    @Query("select b from Blog b where b.title like ?1 or b.content like ?1")
+    Page<Blog> findByQuery(String query, Pageable pageable);
 
     @Query("select function('date_format', b.createTime, '%Y') as year from Blog b group by function('date_format', b.createTime, '%Y') order by year desc ")
     List<String> findGroupYear();

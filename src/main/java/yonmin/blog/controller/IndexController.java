@@ -8,9 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import yonmin.blog.service.BlogService;
 import yonmin.blog.service.TagService;
 import yonmin.blog.service.TypeService;
+import yonmin.blog.domain.BlogQuery;
 
 @Controller
 public class IndexController {
@@ -46,6 +49,14 @@ public class IndexController {
         model.addAttribute("newblogs", blogService.listRecommendBlogTop(3));
         System.out.println("访问成功");
         return "/commons/fragments :: newbloglist";
+    }
+
+    @PostMapping("/search")
+    public String search(@PageableDefault(size = 8, sort = {"createTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                         @RequestParam String query, Model model) {
+        model.addAttribute("page", blogService.listBlog("%"+query+"%", pageable));
+        model.addAttribute("query", query);
+        return "/search";
     }
 
 }
