@@ -137,7 +137,7 @@
 
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.js"></script>
-<script>
+<script th:inline="javascript">
     $('.show').click(function(){
         $('.m-item').toggleClass('m-mobile-hide')
     });

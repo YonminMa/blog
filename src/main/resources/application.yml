@@ -14,3 +14,5 @@ logging:
     name: log/blog.log
     max-size: 1MB
     max-history: 7
+
+comment.avatar: "/images/avatar.jpg"
